@@ -1,6 +1,7 @@
 #Clear Workspace before each run.
 import numpy as np
 from scipy import linalg
+from numpy.linalg import inv
 
 def Psi(z):
     zeta = 0.11  # Establish Tuning Parameter
@@ -30,14 +31,16 @@ RSS = 10
 iter = 0
 K = 2  # Number of classes
 
-# Data
+# Set random seed for reproducibility
+np.random.seed(42)
+
 # Synthetic X Matrix
 X = np.random.randint(0, 11, size=(100, 40))
 X = X / np.linalg.norm(X, axis=0)
 
 # Synthetic Y Matrix - Replace with Target Variable
 num_samples = X.shape[0]
-num_classes = K  # Classes: 0, 1
+num_classes = K
 Y_labels = np.random.randint(0, 2, size=(num_samples,))
 
 # Convert to dummy variable (one-hot encoding)
